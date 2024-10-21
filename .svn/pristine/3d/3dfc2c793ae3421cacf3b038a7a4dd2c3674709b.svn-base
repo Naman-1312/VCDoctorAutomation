@@ -1,0 +1,91 @@
+@tag
+Feature: To verify the Physician registration functionality
+
+  @SanityTest
+  Scenario Outline: To verify the functionality of physician registration with valid data
+    Given Physician is on registration page
+    And Physician select country code "<CountryCode>"
+    And Physician enter PhoneNumber "<PhoneNumber>"
+    And Physician enter Captcha "<Captcha>"
+    And Physician click on Submit button
+    And Physician click on SendOTP button
+    And Physician enter OTP "<OTP>"
+    And Physician click on VerifyOTP button
+    And Physician select Yes as Associated with a Practice
+    And Physician select Practice Location "<PracticeLocation>"
+    And Physician enter DoctorName "<DoctorName>"
+    And Physician enter NewPassword "<NewPassword>"
+    And Physician enter ConfirmPassword "<ConfirmPassword>"
+    And Physician select Country "<Country>"
+    And Physician select State "<State>"
+    And Physician select City "<City>"
+    And Physician enter Postal Code "<PostalCode>"
+    And Physician enter Email "<Email>"
+    And Physician enter NPINumber "<NPINumber>"
+    And Physician enter PhysicianFee "<PhysicianFee>"
+    And Physician select speciality "<speciality>"
+    And Physician enter LicenceNo "<LicenceNo>"
+    And Physician click on Signup button
+    And Physician check consent checkbox
+    And Physician Draw their signature
+    When Physician click on FinalSubmit button
+    Then I validate the success message for physician registration
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha | OTP    | PracticeLocation                                                 | DoctorName | NewPassword | ConfirmPassword | Country | State | City  | PostalCode | Email                         | NPINumber | PhysicianFee | speciality | LicenceNo |
+      | India       |  9891813421|  123456 | 999999 | Oakmont Community Hospital - Dreamsoft4u Public Patient Location | Naman      | Pass@123    | Pass@123        | India   | Delhi | Noida |      12345 | automationnama13@yopmail.com |    124433 |          100 | Dental     |   3343344 |
+
+      
+@RegressionTest1
+  Scenario Outline: To verify the functionality of doctor registration after leaving country code field blank
+    Given Physician is on registration page
+    And Physician click on countrycode cross icon
+    And Physician enter PhoneNumber "<PhoneNumber>"
+    And Physician enter Captcha "<Captcha>"
+    When Physician click on Submit button
+    Then I validate the error message of blank CountryCode field for physician 
+
+    Examples: 
+      | PhoneNumber | Captcha |
+      |  9891811818 |  123456 |
+      
+
+@RegressionTest2
+  Scenario Outline: To verify the functionality of physician registration with phone number less then 10 data
+    Given Physician is on registration page
+    And Physician select country code "<CountryCode>"
+    And Physician enter PhoneNumber "<PhoneNumber>"
+    When Physician enter Captcha "<Captcha>"
+   # When Patient click on Submit button
+    Then I validate the error message for less phone number on physician registration
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha |
+      | India       |    98918118 |  123456 |
+      
+@RegressionTest3
+  Scenario Outline: To verify the functionality of physician registration with blank phone number
+    Given Physician is on registration page
+    And Physician select country code "<CountryCode>"
+    And Physician enter Captcha "<Captcha>"
+    When Physician click on Submit button
+    Then I validate the error message of blank PhoneNumber field for Physician
+
+    Examples: 
+      | CountryCode | Captcha |
+      | India       |  123456 |
+      
+@RegressionTest4
+  Scenario Outline: To verify the functionality of physician registration after entering invalid captcha
+    Given Physician is on registration page
+    And Physician select country code "<CountryCode>"
+    And Physician enter PhoneNumber "<PhoneNumber>"
+    And Physician enter Captcha "<Captcha>"
+    When Physician click on Submit button
+    Then I validate the error message for invalid captcha for Physician
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha |
+      | India       |  9891811818 |   12345 |      
+      
+      

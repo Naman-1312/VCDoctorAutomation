@@ -1,0 +1,138 @@
+package StepDefination;
+
+import PageObjects.BaseClass;
+import PageObjects.PatientRegistrationPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class PatientRegistration {
+
+	private BaseClass baseClass;
+	private PatientRegistrationPage registrationPage;
+	
+	
+	@Given("Patient is user on registration page")
+	public void patient_is_user_on_registration_page() {
+		baseClass = new BaseClass();
+		baseClass.setupBrowser("Chrome");
+		baseClass.openUrl();
+		registrationPage = new PatientRegistrationPage(baseClass.getDriver());
+		registrationPage.selectSignupUserType("Patient");
+	   
+	}
+	
+	@Given("Patient select country code {string}")
+    public void patient_select_country_code(String countryCode) {
+		registrationPage.selectCountryCode(countryCode);
+    }
+
+    @Given("Patient enter PhoneNumber {string}")
+    public void patient_enter_phone_number(String phoneNumber) {
+        registrationPage.enterPhoneNumber(phoneNumber);
+    }
+
+    @Given("Patient enter Captcha {string}")
+    public void patient_enter_captcha(String captcha) {
+        registrationPage.enterCaptcha(captcha);
+    }
+
+    @Given("Patient click on Submit button")
+    public void patient_click_on_submit_button() {
+        registrationPage.clickSubmitButton();
+    }
+    
+    @Given("Patient click on Submit button")
+    public void patient_click_on_submit_button() {
+        registrationPage.clickSubmitButton();
+    }
+    
+
+    @Given("Patient enter OTP {string}")
+    public void patient_enter_otp(String otp) {
+    registrationPage.enterOtpField(otp);
+    }
+
+    @Given("Patient click on VerifyOTP button")
+    public void patient_click_on_verify_otp_button() {
+        registrationPage.clickSendOtpButton();
+    }
+
+    @Given("Patient select Yes as Associated with a Practice")
+    public void patient_select_yes_as_associated_with_a_practice() {
+        // Select 'Yes' for being associated with a practice
+    }
+
+    @Given("Patient select Practice Location {string}")
+    public void patient_select_practice_location(String practiceLocation) {
+        // Select the provided practice location
+    }
+
+    @Given("Patient enter FirstName {string}")
+    public void patient_enter_first_name(String firstName) {
+        // Enter the provided first name
+    }
+
+    @Given("Patient enter LastName {string}")
+    public void patient_enter_last_name(String lastName) {
+        // Enter the provided last name
+    }
+
+    @Given("Patient enter NewPassword {string}")
+    public void patient_enter_new_password(String newPassword) {
+        // Enter the provided new password
+    }
+
+    @Given("Patient enter ConfirmPassword {string}")
+    public void patient_enter_confirm_password(String confirmPassword) {
+        // Enter the provided confirm password
+    }
+
+    @Given("Patient select Country {string}")
+    public void patient_select_country(String country) {
+        // Select the provided country
+    }
+
+    @Given("Patient select State {string}")
+    public void patient_select_state(String state) {
+        // Select the provided state
+    }
+
+    @Given("Patient select City {string}")
+    public void patient_select_city(String city) {
+        // Select the provided city
+    }
+
+    @Given("Patient select ReferenceType {string}")
+    public void patient_select_reference_type(String referenceType) {
+        // Select the provided reference type
+    }
+
+    @Given("Patient enter Postal Code {string}")
+    public void patient_enter_postal_code(String postalCode) {
+        // Enter the provided postal code
+    }
+
+    @Given("Patient enter Email {string}")
+    public void patient_enter_email(String email) {
+        // Enter the provided email
+    }
+
+    @Given("Patient select TimeZone {string}")
+    public void patient_select_time_zone(String timeZone) {
+        // Select the provided time zone
+    }
+
+    @When("I click on Signup button")
+    public void i_click_on_signup_button() {
+        // Click on the signup button
+    }
+
+    @Then("I validate the success message")
+    public void i_validate_the_success_message() {
+        // Validate that the success message is displayed
+    }
+}
+
+	
+}

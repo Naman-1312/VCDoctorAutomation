@@ -1,0 +1,668 @@
+package PageObjects;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class PatientRegistrationPage {
+	private WebDriverWait wait;
+	private WebDriver driver;
+	public PatientRegistrationPage(WebDriver driver) {
+		this.driver = driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(80));
+	}
+	
+	
+
+	// Locator methods
+	
+	private WebElement getSignupButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-nav']/li[9]")));
+	}
+	
+	private WebElement getCountryCode() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-CountryCode-container")));
+	}
+	private WebElement getPhoneNumberField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("PhoneNumber")));
+	}
+	
+	private WebElement getCaptchaField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("cpatchaTextBox")));
+	}
+
+	private WebElement getSubmitButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("btnCapcha")));
+	}
+	private WebElement getOtpButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("btnGetOTP")));
+	}
+	
+	private WebElement getOtpField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("OTP")));
+	}
+	
+	
+	private WebElement getFirstNameField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name")));
+	}
+
+	private WebElement getMiddleNameField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("middle_name")));
+	}
+	
+	private WebElement getFirstNameBlankErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name-error")));
+	}
+
+	private WebElement getFirstNameInvalidErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name-error")));
+	}
+
+	private WebElement getFirstNameLessCharacterErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name-error")));
+	}
+
+	private WebElement getFirstNameMoreCharacterErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("first_name-error")));
+	}
+
+	private WebElement getLastNameField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last_name")));
+	}
+
+	private WebElement getLastNameBlankErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last_name-error")));
+	}
+
+	private WebElement getLastNameInvalidErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last_name-error")));
+	}
+
+	private WebElement getLastNameLessCharacterErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last_name-error")));
+	}
+
+	private WebElement getLastNameMoreCharacterErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("last_name-error")));
+	}
+
+	private WebElement getGenderDropdown() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-gender-container")));
+	}
+	private WebElement getMaritalStatusDropdown() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-marital_status-container")));
+	}
+
+	private WebElement getGenderBlankError() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("gender-error")));
+	}
+
+	private WebElement getProvinceDropdown() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-state-container")));
+	}
+
+	private WebElement getBlankProvinceError() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("state-error")));
+	}
+
+	private WebElement getCityField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("city")));
+	}
+
+	private WebElement getBlankCityError() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("city-error")));
+	}
+
+	private WebElement getMobileNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile")));
+	}
+/*	private WebElement getPhoneNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("phone_number")));
+	}
+*/
+	
+	private WebElement getInvalidMobileNumberErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile-error")));
+	}
+
+	private WebElement getLessCharactersMobileNumberErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile-error")));
+	}
+
+	private WebElement getMoreCharactersMobileNumberErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile-error")));
+	}
+
+	private WebElement getBlankMobileNumberErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile-error")));
+	}
+
+	private WebElement getEmailIdField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+	}
+
+	private WebElement getBlankEmailErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email-error")));
+	}
+
+	private WebElement getInvalidEmailErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email-error")));
+	}
+
+	private WebElement getExistingEmailErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email-error")));
+	}
+
+	private WebElement getNewPasswordField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
+	}
+
+	private WebElement getBlankNewPasswordErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password-error")));
+	}
+
+	private WebElement getConfirmPasswordField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirm_password")));
+	}
+
+	private WebElement getBlankConfirmPasswordErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirm_password-error")));
+	}
+
+	private WebElement getDifferentConfirmPasswordErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirm_password-error")));
+	}
+
+	private WebElement getMedicalAidNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("insurance_id")));
+	}
+
+	private WebElement getBlankMedicalAidErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("insurance_id-error")));
+	}
+
+	private WebElement getTermsAndConditionsCheckbox() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("terms_check")));
+	}
+
+	private WebElement getUncheckedTermsAndConditionErrorMsg() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("terms_check-error")));
+	}
+
+	private WebElement getMemberSubmitButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("submit")));
+	}
+	private WebElement getProviderSubmitButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("submit_ftr")));
+	}
+
+	private WebElement getDOBField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("dp1725428013670")));
+	}
+	
+	
+
+	private WebElement getResetButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.className("btn btn-outline-light m-1")));
+	}
+
+	private WebElement getSuccessMessage() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.className("alert alert-success success1 alert-dismissible alertStyle fade show")));
+
+	}
+	
+	private WebElement getEditIcon() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.xpath("//*[@class='edit_btn']")));
+}
+	
+	private WebElement getAddressLine1Field() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_first")));
+	}
+	private WebElement getAddressLine2Field() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("address_second")));
+	}
+	private WebElement getPostalCodeField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("zip_code")));
+	}
+	private WebElement getIdNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("govt_id")));
+	}
+	private WebElement getPassportNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("passport")));
+	}
+	private WebElement getOtherIdField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("other_id")));
+	}
+	private WebElement getDrivingLicenceNoField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("driver_license")));
+	}
+	private WebElement getEContactNumberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emergency_contact_no")));
+	}
+	private WebElement getRelationToMemberField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("relation_to_patient")));
+	}
+	private WebElement getEFirstNameField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emergency_first_name")));
+	}
+	private WebElement getELastNameField() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("emergency_last_name")));
+	}
+	private WebElement getProfileUpdateSuccessMessage() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirm_password-error")));
+	}
+
+	// Action methods
+
+	public void clickOnSignupButton(String userType) {
+		WebElement signUpBtn = getSignupButton();
+		signUpBtn.click();
+		
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.linkText(userType)));
+		selectedOption.click();
+		
+	}
+	
+	public void selectCountryCode(String countryCode) {
+		WebElement countryCodeField = getCountryCode();
+		countryCodeField.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(countryCode);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + countryCode + "')]")));
+		selectedOption.click();
+	}
+	
+	public void enterPhoneNumber(String phoneNumber) {
+		WebElement phoneNumberField = getPhoneNumberField();
+		phoneNumberField.sendKeys(phoneNumber);
+	}
+	
+	public void enterCaptcha(String captcha) {
+		WebElement captchaField = getCaptchaField();
+		captchaField.sendKeys(captcha);
+	}
+	
+	public void clickSubmitButton() {
+		WebElement submitBtn = getSubmitButton();
+		submitBtn.click();
+	}
+	
+	public void clickSendOtpButton() {
+		WebElement getOtpbtn = getOtpButton();
+		getOtpbtn.click();
+	}
+	
+	public void enterOtpField(String OTP) {
+		WebElement otpField = getOtpField();
+		otpField.sendKeys(OTP);
+	}
+	
+	
+	
+	// Prefix Action Methods
+	public void selectPrefix(String prefix) {
+		WebElement prefixField = getPrefixField();
+		prefixField.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(prefix);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + prefix + "')]")));
+		selectedOption.click();
+	}
+
+	public String checkPrefixErrorMsg() {
+		WebElement getPrefixError = getPrefixError();
+		String actualErrorMessage = getPrefixError.getText();
+		return actualErrorMessage;
+	}
+
+//First Name Field Action Methods
+	public void enterFirstName(String firstName) {
+		WebElement firstNameField = getFirstNameField();
+		firstNameField.sendKeys(firstName);
+	}
+
+	public String checkFirstNameBlankErrorMsg() {
+		WebElement getFirstNameBlankError = getFirstNameBlankErrorMsg();
+		String actualErrorMessage = getFirstNameBlankError.getText();
+	return actualErrorMessage;
+	}
+
+	public String  checkFirstNameInvalidErrorMsg() {
+		WebElement getFirstNameInvalidError = getFirstNameInvalidErrorMsg();
+		String actualErrorMessage = getFirstNameInvalidError.getText();
+	     return actualErrorMessage;
+	}
+
+	public String checkFirstNameLessCharactersErrorMsg() {
+		WebElement getFirstNameLessCharacterError = getFirstNameLessCharacterErrorMsg();
+		String actualErrorMessage = getFirstNameLessCharacterError.getText();
+		return actualErrorMessage;
+	}
+
+	public String checkFirstNameMoreCharactersErrorMsg() {
+		WebElement getFirstNameMoreCharacterError = getFirstNameMoreCharacterErrorMsg();
+	String actualErrorMessage =	getFirstNameMoreCharacterError.getText();
+	return actualErrorMessage;
+	}
+
+//Last Name Field Action Methods
+	public void enterLastName(String lastName) {
+		WebElement lastNameField = getLastNameField();
+		lastNameField.sendKeys(lastName);
+	}
+
+	public String checkLastNameBlankErrorMsg() {
+		WebElement getLastNameBlankError = getLastNameBlankErrorMsg();
+		String actualErrorMessage = getLastNameBlankError.getText();
+	return actualErrorMessage;
+	
+	}
+
+	public String checkLastNameInvalidErrorMsg() {
+		WebElement getLastNameInvalidError = getLastNameInvalidErrorMsg();
+		String actualErrorMessage = getLastNameInvalidError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkLastNameLessCharactersErrorMsg() {
+		WebElement getLastNameLessCharacterError = getLastNameLessCharacterErrorMsg();
+	String actualErrorMessage = getLastNameLessCharacterError.getText();
+	return actualErrorMessage;
+	
+	}
+
+	public String checkLastNameMoreCharactersErrorMsg() {
+		WebElement getLastNameMoreCharacterError = getLastNameMoreCharacterErrorMsg();
+		String actualErrorMessage = getLastNameMoreCharacterError.getText();
+		return actualErrorMessage;
+	}
+
+//Gender Field Action Methods
+
+	public void selectGender(String gender) {
+		WebElement genderDropdown = getGenderDropdown();
+		genderDropdown.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(gender);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + gender + "')]")));
+		selectedOption.click();
+	}
+
+	public void selectMaritalStatus(String maritalStatus) {
+		WebElement maritalStatusDropdown = getMaritalStatusDropdown();
+		maritalStatusDropdown.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(maritalStatus);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + maritalStatus + "')]")));
+		selectedOption.click();
+	}
+	
+	public String checkBlankGenderErrorMsg() {
+		WebElement getBlankGenderError = getGenderBlankError();
+		String actualErrorMessage = getBlankGenderError.getText();
+		return actualErrorMessage;
+	}
+
+	// Province Field Action Methods
+
+	public void selectProvince(String province) {
+		WebElement provinceDropdown = getProvinceDropdown();
+		provinceDropdown.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(province); // Type province
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + province + "')]")));
+		selectedOption.click();
+	}
+
+	public String checkBlankProvinceErrorMsg() {
+		WebElement getBlankProvinceError = getBlankProvinceError();
+	String actualErrorMessage = getBlankProvinceError.getText();
+	return actualErrorMessage;
+	
+	}
+
+	// City Field Action Methods
+	public void enterCity(String city) {
+		WebElement cityField = getCityField();
+		cityField.sendKeys(city);
+	}
+
+	public String checkBlankCityErrorMsg() {
+		WebElement getBlankCityError = getBlankCityError();
+		String actualErrorMessage = getBlankCityError.getText();
+	return actualErrorMessage;
+	}
+
+	// Mobile Number Field Action Methods
+	public void enterMobileNumber(String mobileNumber) {
+		WebElement mobileNumberField = getMobileNumberField();
+		mobileNumberField.sendKeys(mobileNumber);
+	}
+
+
+	
+	public String checkMobileNumberInvalidErrorMsg() {
+		WebElement getMobileNumberInvalidError = getInvalidMobileNumberErrorMsg();
+		String actualErrorMessage = getMobileNumberInvalidError.getText();
+	return actualErrorMessage;
+	
+	}
+
+	public String checkLessCharactersMobileNumberErrorMsg() {
+		WebElement getLessCharacterMobileNumberError = getLessCharactersMobileNumberErrorMsg();
+		String actualErrorMessage = getLessCharacterMobileNumberError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkMoreCharactersMobileNumberErrorMsg() {
+		WebElement getMoreCharacterMobileNumberError = getMoreCharactersMobileNumberErrorMsg();
+		String actualErrorMessage = getMoreCharacterMobileNumberError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkBlankMobileNumberErrorMsg() {
+		WebElement getBlankMobileNumberError = getBlankMobileNumberErrorMsg();
+	String actualErrorMessage =	getBlankMobileNumberError.getText();
+	return actualErrorMessage;
+	}
+
+	// Email Id Field Action Methods
+
+	public void enterEmailId(String emailId) {
+		WebElement emailIdField = getEmailIdField();
+		emailIdField.sendKeys(emailId);
+	}
+
+	public String checkBlankEmailErrorMsg() {
+		WebElement getBlankEmailError = getBlankEmailErrorMsg();
+		String actualErrorMessage = getBlankEmailError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkInvalidEmailErrorMsg() {
+		WebElement getInvalidEmailError = getInvalidEmailErrorMsg();
+		String actualErrorMessage = getInvalidEmailError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkExistingEmailErrorMsg() {
+		WebElement getExistingEmailError = getExistingEmailErrorMsg();
+		String actualErrorMessage = getExistingEmailError.getText();
+	return actualErrorMessage;
+	}
+
+	// New Password Field Action Methods
+
+	public void enterNewPassword(String newPassword) {
+		WebElement newPasswordField = getNewPasswordField();
+		newPasswordField.sendKeys(newPassword);
+	}
+
+	public String checkBlankNewPasswordErrorMsg() {
+		WebElement getBlankNewPasswordError = getBlankNewPasswordErrorMsg();
+		String actualErrorMessage = getBlankNewPasswordError.getText();
+	return actualErrorMessage;
+	}
+
+	// Confirm Password Field Action Methods
+
+	public void enterConfirmPassword(String confirmPassword) {
+		WebElement confirmPasswordField = getConfirmPasswordField();
+		confirmPasswordField.sendKeys(confirmPassword);
+	}
+
+	public String checkBlankConfirmPasswordErrorMsg() {
+		WebElement getBlankConfirmPasswordError = getBlankConfirmPasswordErrorMsg();
+		String actualErrorMessage = getBlankConfirmPasswordError.getText();
+	return actualErrorMessage;
+	}
+
+	public String checkDifferentConfirmPasswordErrorMsg() {
+		WebElement getDifferentConfirmPasswordError = getDifferentConfirmPasswordErrorMsg();
+		String actualErrorMessage = getDifferentConfirmPasswordError.getText();
+	return actualErrorMessage;
+	}
+
+	// Medical Aid Number Field Action Methods
+
+	public void enterMedicalAidNumber(String medicalAidNumber) {
+		WebElement medicalAidNumberField = getMedicalAidNumberField();
+		medicalAidNumberField.sendKeys(medicalAidNumber);
+	}
+
+	public String checkBlankMedicalAidNumberErrorMsg() {
+		WebElement getBlankAidError = getBlankMedicalAidErrorMsg();
+		String actualErrorMessage = getBlankAidError.getText();
+	return actualErrorMessage;
+	}
+
+	// Terms & Condition Checkbox Action Methods
+
+	public void checkTermsAndConditions() {
+		WebElement termsAndConditionsCheckbox = getTermsAndConditionsCheckbox();
+		termsAndConditionsCheckbox.click();
+	}
+
+	public String checkUncheckedTermsAndConditionErrorMsg() {
+		WebElement getUncheckTANDCError = getUncheckedTermsAndConditionErrorMsg();
+		String actualErrorMessage = getUncheckTANDCError.getText();
+		return actualErrorMessage;
+	}
+
+	// Submit button Action Methods
+	public void memberSubmitButtonClick() {
+		WebElement submitBtn = getMemberSubmitButton();
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+		submitBtn.click();
+	
+/*		WebElement submitButton = getSubmitButton();
+		submitButton.click();
+	
+	*/	
+	}
+	
+	public void providerSubmitButtonClick() {
+		WebElement submitBtn2 = getProviderSubmitButton();
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn2);
+		submitBtn2.click();
+	
+	}
+	// Reset button Action Methods
+	public void resetButtonClick() {
+		WebElement resetButton = getResetButton();
+		resetButton.click();
+	}
+
+	// Registration Success Status Check Action Methods
+	public String isRegistrationSuccess() {
+		WebElement successMessage = getSuccessMessage();
+		String registrationSuccessMessage = successMessage.getText();
+		return registrationSuccessMessage;
+	}
+
+	public void clickEditIcon() {
+		WebElement editIcon = getEditIcon();
+		editIcon.click();
+	}
+	public void enterMiddleName(String middleName) {
+		WebElement middleNameField = getMiddleNameField();
+		middleNameField.sendKeys(middleName);
+	}
+	public void enterDateOfBirth(String dOB) {
+		WebElement dobField = getDOBField();
+		dobField.click();
+	
+		while (!driver.findElement(By.className("ui-datepicker-title")).getText().contains(dOB)) {
+            driver.findElement(By.className("ui-datepicker-prev")).click(); 
+        }		
+	}
+	
+	public void enterAddressLine1(String addressOne) {
+		WebElement addressOneField = getAddressLine1Field();
+		addressOneField.sendKeys(addressOne);
+	}
+	public void enterAddressLine2(String addressTwo) {
+		WebElement addressTwoField = getAddressLine2Field();
+		addressTwoField.sendKeys(addressTwo);
+	}
+	public void enterPostalCode(String postalCode) {
+		WebElement addressTwoField = getPostalCodeField();
+		addressTwoField.sendKeys(postalCode);
+	}
+	public void enterIdNumber(String idNumber) {
+		WebElement idNumberField = getIdNumberField();
+		idNumberField.sendKeys(idNumber);
+	}
+	public void enterPassportNumber(String passportNumber) {
+		WebElement pNumberField = getPassportNumberField();
+		pNumberField.sendKeys(passportNumber);
+	}
+	public void enterOtherIdNumber(String otherIdNumber) {
+		WebElement otherIdNumberField = getOtherIdField();
+		otherIdNumberField.sendKeys(otherIdNumber);
+	}
+	public void enterDrivingLicenceNumber(String drivingNumber) {
+		WebElement drivingLicenceField = getDrivingLicenceNoField();
+		drivingLicenceField.sendKeys(drivingNumber);
+	}
+	public void enterEContactNumber(String eContactNumber) {
+		WebElement eContactNumberField = getEContactNumberField();
+		eContactNumberField.sendKeys(eContactNumber);
+	}
+	public void enterRelationToMember(String relationToMember) {
+		WebElement relationToMemberField = getRelationToMemberField();
+		relationToMemberField.sendKeys(relationToMember);
+	}
+	public void enterEFirstName(String eFirstName) {
+		WebElement eFirstNameField = getEFirstNameField();
+		eFirstNameField.sendKeys(eFirstName);
+	}
+
+	public void enterELastName(String eLastName) {
+		WebElement eLastNameField = getELastNameField();
+		eLastNameField.sendKeys(eLastName);
+	}
+	public String isUpdateSuccess() {
+		WebElement successMessage = getProfileUpdateSuccessMessage();
+		String updateSuccessMessage = successMessage.getText();
+		return updateSuccessMessage;
+	}
+}

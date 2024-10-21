@@ -1,0 +1,19 @@
+package StepDefination;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features="src/test/resources/Feature/PatientRegistration.feature",glue= {"StepDefination"},
+monochrome = true,
+/*plugin = { "pretty", "junit:target/JUnitReports/report.xml",
+		"json:target/JSONReports/report.json",
+		"html:target/HtmlReports.html"} */
+plugin = {"html:target/TestResult/HtmlReports.html"}		
+
+		)
+public class TestRunner {
+
+}

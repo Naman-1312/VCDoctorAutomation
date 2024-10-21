@@ -1,0 +1,319 @@
+package PageObjects;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class PatientRegistrationPage {
+	private WebDriverWait wait;
+	private WebDriver driver;
+	public PatientRegistrationPage(WebDriver driver) {
+		this.driver = driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(80));
+	}
+
+
+
+	// Locator methods
+
+	private WebElement getSignupButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='helpsupport']")));
+	}
+
+	private WebElement getCountryCode() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("select2-CountryCode-container")));
+	}
+	private WebElement getPhoneNumberField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("PhoneNumber")));
+	}
+
+	private WebElement getCaptchaField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("cpatchaTextBox")));
+	}
+
+	private WebElement getSubmitButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("btnCapcha")));
+	}
+	private WebElement getOtpButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("btnGetOTP")));
+	}
+
+	private WebElement getOtpField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("OTP")));
+	}
+
+	private WebElement getSuccessMessage() {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.className("alert alert-success success1 alert-dismissible alertStyle fade show")));
+
+	} 
+
+	private WebElement getVerifyOtpButton() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("btnVerifyOTP")));
+	}
+	private WebElement getAssociatePracticeNoRadioBtn() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@value='No']")));
+	}
+	private WebElement getAssociatePracticeYesRadioBtn() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@value='Yes']")));
+	}
+
+	private WebElement getPracticeLocationDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("OrgLocId")));
+	}
+	private WebElement getFirstNameField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("FirstName")));
+	}
+	private WebElement getLastNameField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("LastName")));
+	}
+	private WebElement getNewPasswordField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Password")));
+	}
+	private WebElement getReEnterPasswordField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("ConfirmPassword")));
+	}
+	private WebElement getCountryDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Country")));
+	}
+	private WebElement getStateDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("State")));
+	}
+	private WebElement getCityDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("City")));
+	}
+	private WebElement getReferenceDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("ReferenceType")));
+	}
+	private WebElement getPostalCodeField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("ZipCode")));
+	}
+	private WebElement getEmailField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='Email'])[2]")));
+	}
+	private WebElement getTimeZoneDD() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("TimeZone")));
+	}
+
+	private WebElement getSignUpBtn() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='PatientForm']/div[15]/button")));
+	}
+
+	private WebElement getConsentCheckBox() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("AcceptConsent")));
+	}
+
+	private WebElement getFinalSubmitBtn() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='text-center']/button")));
+	}
+
+	private WebElement getDoctorNameField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("FirstName")));
+	}
+	private WebElement getPhysicianFeeField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("PhysicianFee")));
+	}
+	private WebElement getNPINumberField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("NPINumber")));
+	}
+	private WebElement getSpecialityDropdown() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("Speciality")));
+	}
+	private WebElement getLicenceNumberField() {
+		return wait.until(ExpectedConditions.elementToBeClickable(By.id("LicenceNo")));
+	}
+	
+	
+	
+	
+	// Action methods
+
+	public void selectSignupUserType(String userType) {
+		WebElement signUpBtn = getSignupButton();
+		signUpBtn.click();
+
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.linkText(userType)));
+		selectedOption.click();
+
+	}
+
+
+	public void selectCountryCode(String countryCode) {
+		WebElement countryCodeField = getCountryCode();
+		countryCodeField.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(countryCode);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + countryCode + "')]")));
+		selectedOption.click();
+	}
+
+	public void enterPhoneNumber(String phoneNumber) {
+		WebElement phoneNumberField = getPhoneNumberField();
+		phoneNumberField.sendKeys(phoneNumber);
+	}
+
+	public void enterCaptcha(String captcha) {
+		WebElement captchaField = getCaptchaField();
+		captchaField.sendKeys(captcha);
+	}
+
+	public void clickSubmitButton() {
+		WebElement submitBtn = getSubmitButton();
+		submitBtn.click();
+	}
+
+	public void clickSendOtpButton() {
+		WebElement getOtpbtn = getOtpButton();
+		getOtpbtn.click();
+	}
+
+	public void enterOtpField(String OTP) {
+		WebElement otpField = getOtpField();
+		otpField.sendKeys(OTP);
+	}
+
+	public void clickVerifyOtpButton() {
+		WebElement verifyOtpBtn = getVerifyOtpButton();
+		verifyOtpBtn.click();
+	}
+
+	public void clickAssociatePracticeNoRadioButton() {
+		WebElement verifyNoRadioBtn = getAssociatePracticeNoRadioBtn();
+		if (!verifyNoRadioBtn.isSelected()) {
+			verifyNoRadioBtn.click();
+		}else {
+			System.out.println("Radio Button is already selected");
+		}
+
+	}
+
+	public void clickAssociatePracticeYesRadioButton() {
+		WebElement verifyYesRadioBtn = getAssociatePracticeYesRadioBtn();
+		if (!verifyYesRadioBtn.isSelected()) {
+			verifyYesRadioBtn.click();
+		}else {
+			System.out.println("Radio Button is already selected");
+		}
+	}
+
+	public void selectPracticeLocationOption(String practiceLocation) {
+		WebElement practiceLocationDd = getPracticeLocationDD();
+		practiceLocationDd.sendKeys(practiceLocation);
+	}
+	public void enterFirstName(String firstName) {
+		WebElement firstNameField = getFirstNameField() ;
+		firstNameField.sendKeys(firstName);
+	}
+	public void enterLastName(String lastName) {
+		WebElement lastNameField = getLastNameField() ;
+		lastNameField.sendKeys(lastName);
+	}
+	public void enterNewPassword(String newPassword) {
+		WebElement newPasswordField = getNewPasswordField() ;
+		newPasswordField.sendKeys(newPassword);
+	}
+	public void enterConfirmPassword(String confirmPassword) {
+		WebElement confirmPasswordField = getReEnterPasswordField();
+		confirmPasswordField.sendKeys(confirmPassword);
+	}
+	public void selectCountryOption(String country) {
+		WebElement countryDd = getCountryDD();
+		countryDd.sendKeys(country);
+	}
+
+	public void selectStateOption(String state) {
+		WebElement stateDd = getStateDD();
+		stateDd.sendKeys(state);
+	}
+
+	public void selectCityOption(String city) {
+		WebElement cityDd = getCityDD();
+		cityDd.sendKeys(city);
+	}
+
+	public void selectReferenceTypeOption(String referenceType) {
+		WebElement referenceTypeDd = getReferenceDD();
+		referenceTypeDd.sendKeys(referenceType);
+	}
+
+	public void enterPostalCode(String postalCode) {
+		WebElement postalCodeField = getPostalCodeField();
+		postalCodeField.sendKeys(postalCode);
+	}
+
+	public void enterEmail(String email) {
+		WebElement emailField = getEmailField();
+		emailField.sendKeys(email);
+	}
+
+	public void selectTimeZoneOption(String timeZone) {
+		WebElement timeZoneDd = getTimeZoneDD();
+		timeZoneDd.sendKeys(timeZone);
+	}
+
+	public void clickSignUpButton() {
+		WebElement signUpBtn = getSignUpBtn();
+		signUpBtn.click();
+	}
+
+	public String isRegistrationSuccess() {
+		WebElement successMessage = getSuccessMessage();
+		String registrationSuccessMessage = successMessage.getText();
+		return registrationSuccessMessage;
+	}
+
+	// Prefix Action Methods
+	/*	public void selectPrefix(String prefix) {
+		WebElement prefixField =  ();
+		prefixField.click();
+		WebElement searchBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.select2-search__field")));
+		searchBox.sendKeys(prefix);
+		WebElement selectedOption = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(text(), '" + prefix + "')]")));
+		selectedOption.click();
+	}
+	 */
+
+	public void checkConsentCheckbox() {
+		WebElement checkbox = getConsentCheckBox();
+		if (!checkbox.isSelected()) {
+			checkbox.click();
+		}
+		else {
+			System.out.println("Checkbox check nhi hua");
+		}
+
+
+
+
+	}
+	public void clickFinalSubmitButton(){
+		WebElement finalSubmitBtn = getFinalSubmitBtn();
+		finalSubmitBtn.click();
+	}
+	
+	public void enterDoctorName(String doctorName) {
+		WebElement doctorNameField = getDoctorNameField();
+		doctorNameField.sendKeys(doctorName);
+	}
+	public void enterPhysicianFee(String physicianFee) {
+		WebElement physicianFeeField = getPhysicianFeeField();
+		physicianFeeField.sendKeys(physicianFee);
+	}
+	public void enterNPINumber(String Npinumber) {
+		WebElement npiNumberField = getNPINumberField();
+		npiNumberField.sendKeys(Npinumber);
+	}
+	public void enterLicenceNumber(String licenceNumber) {
+		WebElement npiNumberField = getLicenceNumberField();
+		npiNumberField.sendKeys(licenceNumber);
+	}
+	
+}

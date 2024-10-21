@@ -1,0 +1,11 @@
+package StepDefination;
+
+import Messages.RegistrationPageMessages;
+import PageObjects.BaseClass;
+import PageObjects.RegistrationPage;
+
+public class OrganizationRegistration {
+	private BaseClass baseClass;
+	private RegistrationPage registrationPage;
+	
+}

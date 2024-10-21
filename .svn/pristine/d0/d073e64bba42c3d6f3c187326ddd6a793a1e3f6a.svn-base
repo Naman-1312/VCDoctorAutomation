@@ -1,0 +1,21 @@
+
+@SanityTest2     
+Feature: To verify the login functionality	 
+    Scenario Outline: To verify the functionality of login with OTP
+    Given Patient is on login page
+   	When Patient click on Login with OTP option
+    And Patient select country code for login "<countryCode>"
+    And Patient enter username "<userName>"
+    And Patient enter captcha "<captcha>"
+    And Patient click on Login with Otp button
+    And Patient enter the OTP "<otp>"
+    And Patient click on Login button
+    Then I verify the success message of the login
+
+Examples: 
+      | countryCode  | userName | captcha  | otp |
+      | India |     9988774212 | 123456 | 999999 |
+       
+
+
+      

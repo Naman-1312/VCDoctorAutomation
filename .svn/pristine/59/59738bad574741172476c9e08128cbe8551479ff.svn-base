@@ -1,0 +1,97 @@
+@tag
+Feature: To verify the Patient registration functionality
+
+  @SanityTest
+  Scenario Outline: To verify the functionality of patient registration with valid data
+    Given Patient is on registration page
+    And Patient select country code "<CountryCode>"
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter Captcha "<Captcha>"
+    And Patient click on Submit button
+    And Patient click on SendOTP button
+    And Patient enter OTP "<OTP>"
+    And Patient click on VerifyOTP button
+    And Patient select Yes as Associated with a Practice
+    And Patient select Practice Location "<PracticeLocation>"
+    And Patient enter FirstName "<FirstName>"
+    And Patient enter LastName "<LastName>"
+    And Patient enter NewPassword "<NewPassword>"
+    And Patient enter ConfirmPassword "<ConfirmPassword>"
+    And Patient select Country "<Country>"
+    And Patient select State "<State>"
+    And Patient select City "<City>"
+    And Patient select ReferenceType "<ReferenceType>"
+    And Patient enter Postal Code "<PostalCode>"
+    And Patient enter Email "<Email>"
+    And Patient select TimeZone "<TimeZone>"
+    And Patient click on Signup button
+    And Patient check consent checkbox
+    When Patient click on FinalSubmit button
+    Then I validate the success message
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha | OTP    | PracticeLocation                                                 | FirstName  | LastName | NewPassword | ConfirmPassword | Country | State | City  | ReferenceType | PostalCode | Email                       | TimeZone                                        |
+      | India       |  9891811818 |  123456 | 999999 | Oakmont Community Hospital - Dreamsoft4u Public Patient Location | Automation | Last     | Pass@123    | Pass@123        | India   | Delhi | Noida | Direct        |      12345 | automationemail@yopmail.com | (GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi |
+
+  @Test2
+  Scenario Outline: To verify the functionality of patient registration after leaving country code field blank
+    Given Patient is on registration page
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter Captcha "<Captcha>"
+    When Patient click on Submit button
+    Then I validate the error message of blank CountryCode field
+
+    Examples: 
+      | PhoneNumber | Captcha |
+      |  9891811818 |  123456 |
+
+  @Test3
+  Scenario Outline: To verify the functionality of patient registration with phone number less then 10 data
+    Given Patient is on registration page
+    And Patient select country code "<CountryCode>"
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter Captcha "<Captcha>"
+    When Patient click on Submit button
+    Then I validate the error message for less phone number
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha |
+      | India       |  9891811818 |  123456 |
+
+  @Test4
+  Scenario Outline: To verify the functionality of patient registration with blank phone number
+    Given Patient is on registration page
+    And Patient select country code "<CountryCode>"
+    And Patient enter Captcha "<Captcha>"
+    When Patient click on Submit button
+    Then I validate the error message of blank PhoneNumber field
+
+    Examples: 
+      | CountryCode | Captcha |
+      | India       |  123456 |
+
+  @Test5
+  Scenario Outline: To verify the functionality of patient registration after entering invalid captcha
+    Given Patient is on registration page
+    And Patient select country code "<CountryCode>"
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter invalid Captcha "<Captcha>"
+    When Patient click on Submit button
+    Then I validate the error message for invalid captcha
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha |
+      | India       |  9891811818 |   12345 |
+
+  @Test6
+  Scenario Outline: To verify the functionality of patient registration after entering invalid captcha
+    Given Patient is on registration page
+    And Patient select country code "<CountryCode>"
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter invalid Captcha "<Captcha>"
+    When Patient click on Submit button
+    Then I validate the error message for invalid captcha
+
+    Examples: 
+      | CountryCode | PhoneNumber | Captcha |
+      | India       |  9891811818 |   12345 |

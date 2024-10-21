@@ -1,0 +1,32 @@
+@tag
+Feature: To verify the Patient registration functionality
+@SanityTest
+  
+  Scenario Outline: To verify the functionality of patient registration with valid data
+    Given Patient is user on registration page 
+    And Patient select country code "<CountryCode>"
+    And Patient enter PhoneNumber "<PhoneNumber>"
+    And Patient enter Captcha "<Captcha>"
+    And Patient click on Submit button
+    And Patient enter OTP "<OTP>"
+    And Patient click on VerifyOTP button
+    And Patient select Yes as Associated with a Practice
+    And Patient select Practice Location "<PracticeLocation>"
+    And Patient enter FirstName "<FirstName>"
+    And Patient enter LastName "<LastName>"
+    And Patient enter NewPassword "<NewPassword>"
+    And Patient enter ConfirmPassword "<ConfirmPassword>"
+    And Patient select Country "<Country>"
+    And Patient select State "<State>"
+    And Patient select City "<City>"
+    And Patient select ReferenceType "<ReferenceType>"
+    And Patient enter Postal Code "<PostalCode>"
+    And Patient enter Email "<Email>"
+    And Patient select TimeZone "<TimeZone>"
+    When I click on Signup button
+    Then I validate the success message
+
+  Examples: 
+      | CountryCode  | PhoneNumber | Captcha  | OTP | PracticeLocation | FirstName | LastName | NewPassword | ConfirmPassword | Country | State | City | ReferenceType | PostalCode | Email | TimeZone | 
+      | name1 |     5 | success |
+

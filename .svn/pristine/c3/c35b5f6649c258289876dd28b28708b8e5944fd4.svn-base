@@ -1,0 +1,21 @@
+package StepDefination;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+
+@RunWith(Cucumber.class)
+//@CucumberOptions(features="src/test/resources/Feature/PhysicianRegistration.feature",glue= {"StepDefination"},
+@CucumberOptions(features="src/test/resources/Feature/OrganizationRegistration.feature",glue= {"StepDefination"},
+monochrome = true,
+/*plugin = { "pretty", "junit:target/JUnitReports/report.xml",
+		"json:target/JSONReports/report.json",
+		"html:target/HtmlReports.html"} */
+	plugin = {"html:target/TestResult/HTMLReport.html"}	
+	//tags = "@RegressionTest22"
+		)
+public class TestRunner {
+
+}
+

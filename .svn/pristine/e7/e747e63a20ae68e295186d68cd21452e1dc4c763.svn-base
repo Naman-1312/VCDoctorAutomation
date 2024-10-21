@@ -1,0 +1,26 @@
+package StepDefination;
+
+import PageObjects.BaseClass;
+import PageObjects.PatientRegistrationPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class PatientRegistration {
+
+	private BaseClass baseClass;
+	private PatientRegistrationPage registrationPage;
+	
+	
+	@Given("Patient is user on registration page")
+	public void patient_is_user_on_registration_page() {
+		baseClass = new BaseClass();
+		baseClass.setupBrowser("Chrome");
+		baseClass.openUrl();
+		registrationPage = new PatientRegistrationPage(baseClass.getDriver());
+		registrationPage.selectSignupUserType("Patient");
+	   
+	}
+
+	
+}

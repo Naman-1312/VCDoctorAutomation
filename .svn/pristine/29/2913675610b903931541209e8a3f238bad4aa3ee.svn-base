@@ -1,0 +1,32 @@
+@tag
+Feature: To verify the Physician registration functionality
+
+@SanityTest
+  Scenario Outline: To verify the functionality of physician registration with valid data
+    Given Physician is on registration page 
+    And Physician select country code "<CountryCode>"
+    And Physician enter PhoneNumber "<PhoneNumber>"
+    And Physician enter Captcha "<Captcha>"
+    And Physician click on Submit button
+    And Physician click on SendOTP button
+    And Physician enter OTP "<OTP>"
+    And Physician click on VerifyOTP button
+    And Physician select Yes as Associated with a Practice
+    And Physician select Practice Location "<PracticeLocation>"
+    And Physician enter DoctorName "<DoctorName>"
+    And Physician enter NewPassword "<NewPassword>"
+    And Physician enter ConfirmPassword "<ConfirmPassword>"
+    And Physician select Country "<Country>"
+    And Physician select State "<State>"
+    And Physician select City "<City>"
+    And Physician enter Postal Code "<PostalCode>"
+    And Physician enter Email "<Email>"
+    And Physician select TimeZone "<TimeZone>"
+    And Physician click on Signup button
+    And Physician check consent checkbox
+    When Physician click on FinalSubmit button
+    Then I validate the success message 
+
+  Examples: 
+      | CountryCode  | PhoneNumber | Captcha  | OTP | PracticeLocation | FirstName | LastName | NewPassword | ConfirmPassword | Country | State | City | ReferenceType | PostalCode | Email | TimeZone | 
+      | India |     9891811818 | 123456 | 999999 | Oakmont Community Hospital - Dreamsoft4u Public Patient Location | Automation | Last | Pass@123 | Pass@123 | India | Delhi | Noida | Direct | 12345 | automationemail@yopmail.com | A.U.S. Eastern Standard Time | 

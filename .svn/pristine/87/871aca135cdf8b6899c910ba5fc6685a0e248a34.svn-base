@@ -1,0 +1,19 @@
+@tag
+Feature: To verify the functionality of Location & Organization Registration
+
+  @SanityTest
+  Scenario Outline: To verify the functionality of Location registration with valid data
+    Given User is on registration page
+    And User select country code "<CountryCode>"
+    And User enter PhoneNumber "<PhoneNumber>"
+    And User enter FirstName "<FirstName>"
+    And User enter LastName "<LastName>"
+    And User enter Designation "<Designation>"
+    And User enter ConfirmPassword "<Email>"
+    And User enter Captcha "<Captcha>"
+    When User click on Signup button
+    Then I validate the success message of Location registration
+
+    Examples: 
+      | CountryCode | PhoneNumber | FirstName | LastName | Designation  | Email      | Captcha |
+      | India       |  9881718171 |    123456 |   999999 | Oakmont Comm | Automation | Last    |

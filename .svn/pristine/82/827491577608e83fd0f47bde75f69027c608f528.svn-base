@@ -1,0 +1,13 @@
+@tag
+Feature: To verify the patient registration functionality 
+ @SanityTest
+  Scenario Outline: To verify the patient registration functionality with all valid data
+    
+    Given Patient is on the registration Page
+    When I check for the <value> in step
+    Then I verify the <status> in step
+
+    Examples: 
+      | name  | value | status  |
+      | name1 |     5 | success |
+      | name2 |     7 | Fail    |

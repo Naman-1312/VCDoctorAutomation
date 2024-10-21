@@ -1,0 +1,221 @@
+package StepDefination;
+
+
+import static org.testng.Assert.assertEquals;
+
+import Messages.ProfileUpdateMessages;
+import PageObjects.BaseClass;
+import PageObjects.LoginPage;
+import PageObjects.ProfileEditingPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class PatientProfileEditingTest {
+	private BaseClass baseClass;
+	private LoginPage login;
+	private ProfileUpdateMessages messages;
+	private ProfileEditingPage profileEdit;
+	private String userName = "9694665596";
+	private String password = "Pass@123";
+	private int waitTime = 2000;
+	
+	
+	@Given("User is on Patient Profile page")
+	public void user_is_on_patient_profile_page() {
+		baseClass = new BaseClass();
+		baseClass.setupBrowser("Chrome");
+		baseClass.handleChatBot();
+		baseClass.openUrl();
+		login = new LoginPage(baseClass.getDriver());
+		messages = new ProfileUpdateMessages(baseClass.getDriver());
+		profileEdit = new ProfileEditingPage(baseClass.getDriver());
+		login.enterUserName(userName);
+		login.enterPassword(password);
+		login.clickLoginBtnWithPass();
+		login.handleLoginConfirmationPopup();
+		profileEdit.clickProfileTab();
+		profileEdit.clickEditBtn();
+	}
+	
+	
+	@Given("User upload profile image {string}")
+	public void user_upload_profile_image(String profilePhotoPath) {
+		profileEdit.uploadPatientProfileImage(profilePhotoPath);
+	}
+	
+	@Given("User enter FirstName for Editing {string}")
+	public void user_enter_first_name_for_editing(String firstName) {
+	profileEdit.enterFirstName(firstName);
+	}
+
+	@Given("User enter LastName for Editing {string}")
+	public void user_enter_last_name_for_editing(String lastName) {
+		profileEdit.enterLastName(lastName);
+	}
+
+	@Given("User select DOB for Editing {string}")
+	public void user_select_dob_for_editing(String dob) {
+		profileEdit.enterDOB(dob);
+	}
+
+	@Given("User select Gender for Editing {string}")
+	public void user_select_gender_for_editing(String gender) {
+	  profileEdit.selectGender(gender);
+	}
+
+	@Given("User select AlternateEmail for Editing {string}")
+	public void user_select_alternate_email_for_editing(String alternateEmail) {
+	profileEdit.enterAlternateEmailId(alternateEmail);
+	}
+
+	@Given("User select AlternateContact Number for Editing {string}")
+	public void user_select_alternate_contact_number_for_editing(String alternateContact) {
+		profileEdit.enterAlternateContactNuber(alternateContact);
+	}
+
+	@Given("User select Country for Editing {string}")
+	public void user_select_country_for_editing(String country) {
+	 profileEdit.selectCountry(country);
+	}
+
+	@Given("User select State for Editing {string}")
+	public void user_select_state_for_editing(String state) throws InterruptedException {
+	    Thread.sleep(waitTime);
+		profileEdit.selectState(state);
+	}
+
+	@Given("User select City for Editing {string}")
+	public void user_select_city_for_editing(String city) throws InterruptedException {
+		Thread.sleep(waitTime);
+	    profileEdit.selectCity(city);
+	}
+
+	@Given("User enter PostalCode for Editing {string}")
+	public void user_enter_postal_code_for_editing(String postalCode) {
+	   profileEdit.enterPostalCode(postalCode);
+	}
+
+	@Given("User enter PermanentAddress for Editing {string}")
+	public void user_enter_permanent_address_for_editing(String permanentAddress) {
+	   profileEdit.enterPermanentAddress(permanentAddress);
+	}
+
+	@Given("User enter ResidentialAddress for Editing {string}")
+	public void user_enter_residential_address_for_editing(String residentialAddress) {
+	  profileEdit.enterResidentialAddress(residentialAddress);
+	}
+
+	@Given("User select BloodGroup for Editing {string}")
+	public void user_select_blood_group_for_editing(String bloodGroup) {
+	    profileEdit.selectBloodGroup(bloodGroup);
+	}
+
+	@Given("User select AnyInsurance for Editing {string}")
+	public void user_select_any_insurance_for_editing(String anyInsurance) {
+	  profileEdit.selectAnyInsurance(anyInsurance);
+	}
+
+	@Given("User select TimeZone for Editing {string}")
+	public void user_select_time_zone_for_editing(String timeZone) {
+	    profileEdit.selectTimeZone(timeZone);
+	}
+
+	@When("User click on Submit button")
+	public void user_click_on_submit_button() {
+	    profileEdit.clickSubmitBtn();
+	}
+
+	@When("User leaves FirstName field blank during profile Editing {string}")
+	public void user_leaves_firstname_field_blank_during_profile_editing(String firstName) {
+	    profileEdit.enterFirstName(firstName);
+	}
+	
+	@When("User leaves LastName field blank during profile Editing {string}")
+	public void user_leaves_lastname_field_blank_during_profile_editing(String lastName) {
+	    profileEdit.enterLastName(lastName);
+	}
+	
+	
+	@Then("I success message for the profile update")
+	public void i_success_message_for_the_profile_update() {
+		   String actualMessage = profileEdit.checkUpdateSuccess();
+		   String expectedMessage = messages.updateSuccessMsg();
+		assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for blank first name")
+	public void i_validate_the_error_message_for_blank_first_name() {
+		   String actualMessage = profileEdit.actualFirstNameErrorMessage();
+		   String expectedMessage = messages.expectedBlankFirstNameErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for less first name value")
+	public void i_validate_the_error_message_for_less_first_name_value() {
+		String actualMessage = profileEdit.actualFirstNameErrorMessage();
+		   String expectedMessage = messages.expectedLessFirstNameErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for blank last name")
+	public void i_validate_the_error_message_for_blank_last_name() {
+		   String actualMessage = profileEdit.actualLastNameErrorMessage();
+		   String expectedMessage = messages.expectedBlankLastNameErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for less last name value")
+	public void i_validate_the_error_message_for_less_last_name_value() {
+		String actualMessage = profileEdit.actualLastNameErrorMessage();
+		   String expectedMessage = messages.expectedLessLastNameErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+
+	@Then("I validate the error message for blank gender field")
+	public void i_validate_the_error_message_for_blank_gender_field() {
+		String actualMessage = profileEdit.actualGenderErrorMessage();
+		   String expectedMessage = messages.expectedBlankGenderErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for invalid Alternate Email id")
+	public void i_validate_the_error_message_for_invalid_alternate_email_id() {
+		String actualMessage = profileEdit.actualAlternateEmailErrorMessage();
+		   String expectedMessage = messages.expectedInvalidAlternateEmailErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for blank State field")
+	public void i_validate_the_error_message_for_blank_state_field() {
+		String actualMessage = profileEdit.actualStateErrorMessage();
+		   String expectedMessage = messages.expectedBlankStateErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+	}
+	
+	@Then("I validate the error message for blank permanent address field")
+	public void i_validate_the_error_message_for_blank_permanent_address_field() {
+		String actualMessage = profileEdit.actualPermanentAddressErrorMessage();
+		   String expectedMessage = messages.expectedBlankPermanentAddressErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();
+		
+	}
+	
+	@Then("I validate the error message for blank timezone field")
+		public void i_validate_the_error_message_for_blank_timezone_field() {
+		String actualMessage = profileEdit.actualTimeZoneErrorMessage();
+		   String expectedMessage = messages.expectedBlankTimeZoneErrorMsg();
+		   assertEquals(expectedMessage , actualMessage);
+		   baseClass.tearDown();	
+		}
+	}
+	

@@ -1,0 +1,29 @@
+@tag
+Feature: To verify the Patient registration functionality
+@SanityTest
+  
+  Scenario Outline: To verify the functionality of patient registration with valid data
+    Given Patient is user on registration page 
+    And Patient select country code "<CountryCode>"
+    And Patient Enter PhoneNumber "<PhoneNumber>"
+    And Patient Enter Captcha "<Captcha>"
+    And Patient Click on Submit button
+    And Patient Enter OTP "<OTP>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    And Patient select country code "<CountryCode>"
+    When I complete action
+    And some other action
+    And yet another action
+    Then I validate the outcomes
+    And check more outcomes
+
+  Examples: 
+      | name  | value | status  |
+      | name1 |     5 | success |
+      | name2 |     7 | Fail    |

@@ -1,0 +1,92 @@
+package StepDefination;
+
+
+import static org.testng.Assert.assertTrue;
+
+//import Messages.RegistrationPageMessages;
+import PageObjects.BaseClass;
+import PageObjects.RegistrationPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class OrganizationRegistration {
+	private BaseClass baseClass;
+	private RegistrationPage registrationPage;
+	
+	@Given("User is on registration page")
+	public void user_is_on_registration_page() {
+		baseClass = new BaseClass();
+		baseClass.setupBrowser("Chrome");
+		baseClass.handleChatBot();
+		baseClass.openUrl();
+		registrationPage = new RegistrationPage(baseClass.getDriver());
+		registrationPage.selectSignupUserType("Clinic/Practice");
+	}
+
+	@Given("User select country code {string}")
+	public void user_select_country_code(String countryCode) {
+		registrationPage.selectOrganizationCountryCode(countryCode);
+		
+	}
+
+	@Given("User enter PhoneNumber {string}")
+	public void user_enter_phone_number(String phoneNumber) {
+	    registrationPage.enterPhoneNumberOrganization(phoneNumber);
+	}
+
+	@Given("User enter FirstName {string}")
+	public void user_enter_first_name(String firstName) {
+	   registrationPage.enterFirstName(firstName);
+	}
+
+	@Given("User enter LastName {string}")
+	public void user_enter_last_name(String lastName) {
+		registrationPage.enterLastName(lastName);
+	}
+
+	@Given("User enter Designation {string}")
+	public void user_enter_designation(String designation) {
+	    registrationPage.enterDesignationOrganization(designation);
+	}
+	
+	
+	@Given("User enter Email {string}")
+	public void user_enter_confirm_password(String email) {
+	    registrationPage.enterEmailOrganization(email);
+	}
+
+/*	@Given("User enter Captcha {string}")
+	public void user_enter_captcha(String captcha) {
+	    registrationPage.enterCaptchaOrganization(captcha);
+	}
+*/
+	@Given("User enter Captcha")
+	public void user_enter_captcha() {
+	    registrationPage.enterCaptchaOrganization();
+	}
+	
+
+	@When("User click on Signup button")
+	public void user_click_on_signup_button() {
+	registrationPage.clickOrganizationSignUpBtn();
+	}
+
+/*	@Then("I validate the success message of Location registration")
+	public void i_validate_the_success_message_of_location_registration() {
+		assertTrue(registrationPage.locationRegistrationSuccessCheck());
+		baseClass.tearDown();
+	}
+	*/
+	@Then("I validate the success message of Organization registration")
+	public void i_validate_the_success_message_of_organization_registration() {
+		assertTrue(registrationPage.organizationRegistrationSuccessCheck());
+		baseClass.tearDown();
+	}
+	
+	@When("User Select Location Radio button")
+	public void user_select_location_radio_button() {
+	registrationPage.checkLocationRadioButton();
+	}
+	
+}

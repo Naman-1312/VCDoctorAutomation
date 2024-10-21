@@ -1,0 +1,155 @@
+package StepDefination;
+
+import static org.testng.Assert.assertTrue;
+import PageObjects.BaseClass;
+import PageObjects.RegistrationPage;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class PhysicianRegistrationTest {
+
+	private BaseClass baseClass;
+	private RegistrationPage registrationPage;
+	
+	@Given("Physician is on registration page")
+	public void physician_is_on_registration_page() {
+		baseClass = new BaseClass();
+		baseClass.setupBrowser("Chrome");
+		baseClass.openUrl();
+		registrationPage = new RegistrationPage(baseClass.getDriver());
+		registrationPage.selectSignupUserType("Physician");
+	}
+
+	@Given("Physician select country code {string}")
+	public void physician_select_country_code(String countryCode) {
+	    registrationPage.selectCountryCode(countryCode);
+	    }
+
+	@Given("Physician enter PhoneNumber {string}")
+	public void physician_enter_phone_number(String phoneNumber) {
+	    registrationPage.enterPhoneNumber(phoneNumber);
+	}
+
+	@Given("Physician enter Captcha {string}")
+	public void physician_enter_captcha(String captcha) {
+	    registrationPage.enterCaptcha(captcha);
+	}
+
+	@Given("Physician click on Submit button")
+	public void physician_click_on_submit_button() {
+	    registrationPage.clickSubmitButton();
+	}
+
+	@Given("Physician click on SendOTP button")
+	public void physician_click_on_send_otp_button() {
+	    registrationPage.clickSendOtpButton();
+	}
+
+	@Given("Physician enter OTP {string}")
+	public void physician_enter_otp(String otp) {
+	    registrationPage.enterOtpField(otp);
+	}
+
+	@Given("Physician click on VerifyOTP button")
+	public void physician_click_on_verify_otp_button() {
+	    registrationPage.clickVerifyOtpButton();
+	}
+
+	@Given("Physician select Yes as Associated with a Practice")
+	public void physician_select_yes_as_associated_with_a_practice() {
+	    registrationPage.clickAssociatePracticeYesRadioButton();
+	}
+
+	@Given("Physician select Practice Location {string}")
+	public void physician_select_practice_location(String practiceLocation) {
+	    registrationPage.selectPracticeLocationOption(practiceLocation);
+	}
+
+	@Given("Physician enter DoctorName {string}")
+	public void physician_enter_doctor_name(String doctorName) {
+	    registrationPage.enterDoctorName(doctorName);
+	}
+
+	@Given("Physician enter NewPassword {string}")
+	public void physician_enter_new_password(String password) {
+	    registrationPage.enterNewPassword(password);
+	}
+
+	@Given("Physician enter ConfirmPassword {string}")
+	public void physician_enter_confirm_password(String cPassword) {
+	registrationPage.enterConfirmPassword(cPassword);
+	}
+
+	@Given("Physician select Country {string}")
+	public void physician_select_country(String country) {
+	    registrationPage.selectCountryOption(country);
+	}
+
+	@Given("Physician select State {string}")
+	public void physician_select_state(String state) {
+	   registrationPage.selectStateOption(state);
+	}
+
+	@Given("Physician select City {string}")
+	public void physician_select_city(String city) {
+	 registrationPage.selectCityOption(city);
+	}
+
+	@Given("Physician enter Postal Code {string}")
+	public void physician_enter_postal_code(String postalCode) {
+	    registrationPage.enterPostalCode(postalCode);
+	}
+
+	@Given("Physician enter Email {string}")
+	public void physician_enter_email(String email) {
+	    registrationPage.enterEmail(email);
+	}
+
+	@Given("Physician enter NPINumber {string}")
+	public void physician_enter_npi_number(String npiNumber) {
+	    registrationPage.enterNPINumber(npiNumber);
+	}
+
+	@Given("Physician enter PhysicianFee {string}")
+	public void physician_enter_physician_fee(String physicianFee) {
+	   registrationPage.enterPhysicianFee(physicianFee);
+	}
+
+	@Given("Physician select speciality {string}")
+	public void physician_select_speciality(String speciality) {
+	   registrationPage.selectSpecialityDropdown(speciality);
+	}
+
+	@Given("Physician enter LicenceNo {string}")
+	public void physician_enter_licence_no(String licenceNo) {
+	 registrationPage.enterLicenceNumber(licenceNo);
+	}
+
+	@Given("Physician click on Signup button")
+	public void physician_click_on_signup_button() {
+	    registrationPage.clickPhysicianSignUpButton();
+	}
+
+	@Given("Physician check consent checkbox")
+	public void physician_check_consent_checkbox() {
+	    registrationPage.checkConsentCheckbox();
+	}
+
+	@Given("Physician Draw their signature")
+	public void physician_draw_their_signature() {
+	    registrationPage.drawSignature("#signature canvas.jSignature");
+	}
+
+	@When("Physician click on FinalSubmit button")
+	public void physician_click_on_final_submit_button() {
+	  registrationPage.clickFinalSubmitButton();
+	}
+	
+	@Then("Then I validate the success message")
+	public void then_i_validate_the_success_message() {
+		assertTrue(registrationPage.physicianRegistrationSuccessCheck());
+		baseClass.tearDown();
+	}
+	
+}
